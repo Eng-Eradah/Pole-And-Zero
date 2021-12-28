@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Digital Filter</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="css.css">
+</head>
+
+<body>
+	<div class="container">
+		<h1>Digital Filter</h1>
+
+		<div class="section">
+
+			<div class="canva">
+
+				<div class="main-circle">
+					<!--button-->
+					<div class="options">
+						<button onclick="addNewPole()" class="button-33" role="button">New Pole</button>
+						<button onclick="addNewZero()" class="button-33" role="button">New Zero</button>
+						<button onclick="clearZeros()" class="button-33" role="button">clear zeros</button>
+						<button onclick="clearPoles()" class="button-33" role="button">clear poles</button>
+						<button onclick="clearAllPoints()" class="button-33" role="button">clear All</button><br>
+
+					</div>
+					<!--Circle diagram-->
+					<div class="canvas">
+						<canvas id="zplane_polezero2" width="228" height="228"></canvas>
+					</div>
+				</div>
+				<div class="slider">
+
+					<table style="border: none; border-collapse: collapse; padding: 0px 0px; vertical-align: center;">
+						<tbody>
+							<tr style="border:none; border-collapse: collapse; padding: 0px 0px;">
+
+								<td
+									style="border: none; border-collapse: collapse; padding: 0px 0px; vertical-align: top">
+									<table style="border: none; border-collapse: collapse; padding: 0px 0px;">
+										<tbody>
+											<tr>
+												<td rowspan="2"
+													style="border:none; border-collapse: collapse; padding: 0px 6px; vertical-align: middle; width: 40px;">
+													<input type="hidden" id="polePair_polezero2" checked="true">
+												</td>
+												<td
+													style="border: none; border-collapse: collapse; padding: 0px 0px; width: 80px;">
+													<input id="pole1_polezero2_field" value="0"
+														style="text-align:right;width:4em;margin: 0 6px 6px 0;"
+														type="text"
+														onchange="updateSlider(&quot;pole1_polezero2&quot;); updateZplane();">
+												</td>
+												<td
+													style="border:none; border-collapse: collapse; padding: 0px 0px; width: 150px;">
+													<input type="range" min="0" max="200" value="0" id="pole1_polezero2"
+														onchange="updateValue(&quot;pole1_polezero2&quot;); updateZplane();"
+														oninput="updateValue(&quot;pole1_polezero2&quot;); updateZplane();">
+												</td>
+												<td style="border:none; border-collapse: collapse; padding: 0px 0px;">
+													<output id="p1_name_polezero2" rows="1" cols="12"
+														readonly="readonly">Pole mag</output>
+												</td>
+											</tr>
+											<tr>
+												<td style="border:none; border-collapse: collapse; padding: 0px 0px;">
+													<input id="pole2_polezero2_field" value="0"
+														style="text-align:right;width:4em;margin: 0 6px 6px 0;"
+														type="text"
+														onchange="updateSlider(&quot;pole2_polezero2&quot;); updateZplane();">
+												</td>
+												<td style="border:none; border-collapse: collapse; padding: 0px 0px;">
+													<input type="range" min="0" max="200" value="0" id="pole2_polezero2"
+														onchange="updateValue(&quot;pole2_polezero2&quot;); updateZplane();"
+														oninput="updateValue(&quot;pole2_polezero2&quot;); updateZplane();">
+												</td>
+												<td style="border:none; border-collapse: collapse; padding: 0px 0px;">
+													<output id="p2_name_polezero2" rows="1" cols="12"
+														readonly="readonly">Pole angle</output>
+												</td>
+											</tr>
+											<tr>
+												<td rowspan="2"
+													style="border:none; border-collapse: collapse; padding: 0px 6px; vertical-align: middle;">
+													<label></label><input type="hidden" id="zeroPair_polezero2"
+														checked="true">
+												</td>
+												<td style="border:none; border-collapse: collapse; padding: 0px 0px;">
+													<input id="zero1_polezero2_field" value="1"
+														style="text-align:right;width:4em;margin: 0 6px 6px 0;"
+														type="text"
+														onchange="updateSlider(&quot;zero1_polezero2&quot;); updateZplane();">
+												</td>
+												<td style="border:none; border-collapse: collapse; padding: 0px 0px;">
+													<input type="range" min="0" max="200" value="0" id="zero1_polezero2"
+														onchange="updateValue(&quot;zero1_polezero2&quot;); updateZplane();"
+														oninput="updateValue(&quot;zero1_polezero2&quot;); updateZplane();">
+												</td>
+												<td style="border:none; border-collapse: collapse; padding: 0px 0px;">
+													<output id="z1_name_polezero2" rows="1" cols="12"
+														readonly="readonly">Zero mag</output>
+												</td>
+											</tr>
+											<tr>
+												<td style="border:none; border-collapse: collapse; padding: 0px 0px;">
+													<input id="zero2_polezero2_field" value="0"
+														style="text-align:right;width:4em;margin: 0 6px 6px 0;"
+														type="text"
+														onchange="updateSlider(&quot;zero2_polezero2&quot;); updateZplane();">
+												</td>
+												<td style="border:none; border-collapse: collapse; padding: 0px 0px;">
+													<input type="range" min="0" max="200" value="0" id="zero2_polezero2"
+														onchange="updateValue(&quot;zero2_polezero2&quot;); updateZplane();"
+														oninput="updateValue(&quot;zero2_polezero2&quot;); updateZplane();">
+												</td>
+												<td style="border:none; border-collapse: collapse; padding: 0px 0px;">
+													<output id="z2_name_polezero2" rows="1" cols="12"
+														readonly="readonly">Zero angle</output>
+												</td>
+											</tr>
+											<tr>
+												<td style="border:none; border-collapse: collapse; padding: 0px 0px;">
+												</td>
+												<td style="border:none; border-collapse: collapse; padding: 0px 0px;">
+													<input id="Fs_polezero2" type="hidden" value=1>
+												</td>
+
+											</tr>
+											<tr>
+
+
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+
+					<div class="info">
+						<div class="content">
+							<p><textarea id="coefsList_polezero2" rows="8"  readonly="readonly"></textarea></p>
+	
+	
+						</div>
+	
+					</div>
+				</div>
+				
+
+			</div>
+
+
+			<!--draw two diagram-->
+
+			<div id="design_responses" class="daigram">
+				<div>
+					<div id="magnitude_polezero2" class="daigram1"></div>
+				</div>
+				<div>
+					<div id="magnitude_polezero22" class="daigram2"></div>
+				</div>
+			</div>
+		</div>
+
+
+
+	</div>
+	<script type="text/javascript" src="flotr2.min.js"></script>
+	<script type="text/javascript" src="layout.js"></script>
+
+</body>
+
+</html>
