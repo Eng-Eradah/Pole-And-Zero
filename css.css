@@ -119,46 +119,7 @@ body{
              height:200px;
         }
      }
-     
-     @media only screen and (max-width: 768px) {
-        
-        .section{
-            display: grid;
-           grid-template-areas: 
-           "daigram daigram daigram"
-           "canva canva canva";
-        }
-        .daigram{
-            grid-area:daigram ;
-            grid-template-columns: 1fr 1fr;
-        }
-        .canva{
-            grid-area:canva ;
-            display: grid;
-            grid-template-columns: 1fr 1fr ;
-            margin-top: 30px;
-
-        }
-        .options{
-            display: grid;
-            grid-template-columns: 1fr ;
-            text-align: center;
-        }
-       
-        .daigram1{
-            width:400px;
-             height:200px;
-        }
-        .daigram2{
-            width:400px;
-             height:200px;
-        }
-        #coefsList_polezero2{
-            width:300px;
-            margin-left: 50px;
-        }
-     }
-      
+  
 
      
      

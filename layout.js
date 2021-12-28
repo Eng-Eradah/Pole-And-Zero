@@ -172,7 +172,7 @@ function setZplane(poles, zeros) {
 	}
 
 	var maxInserted = false, minInserted = false;
-	var maxPoint = 600;
+	var maxPoint = 400;
 	for (idx = 0; idx <= maxPoint; idx++) {
 		// step through from 0-pi
 		 
